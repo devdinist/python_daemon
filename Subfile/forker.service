@@ -1,0 +1,13 @@
+[Unit]
+Description=forker Service.
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/python3 /opt/forworker/forker.py -log /var/log/forworker/log.log -Say "Hi hello" -Sleep 1
+Restart=always
+PIDFile=/var/run/forker.pid
+WorkingDirectory=/opt/forworker/
+ExecStop=/bin/kill $MAINPID
+
+[Install]
+WantedBy=multi-user.target
